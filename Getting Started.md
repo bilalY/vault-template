@@ -102,3 +102,9 @@ Ask yourself: "Will I look for this information again?" If yes, and it's grown b
 - **Link generously** — the more links, the more useful the graph
 - **Use daily notes as a safety net** — if you're not sure where something goes, put it in today's daily note
 - **Let Claude help** — ask Claude to create notes, organise information, or find connections
+
+## Next Steps
+
+- [[Vault Workflow]] — how your vault stays in sync across all your devices
+- [[Claude Code Basics]] — how to use Claude Code in the terminal
+- [[Example Reference Note]] — see how a proper reference note is structured

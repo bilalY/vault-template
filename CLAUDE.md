@@ -77,5 +77,6 @@ Most things stay in daily notes. Create a separate file when:
 ## Starter Notes
 
 - [[Getting Started]] — how the vault works, daily-first workflow, wikilinks and tags
+- [[Vault Workflow]] — how sync works across devices, daily workflow, the one rule
 - [[Claude Code Basics]] — how to use Claude Code, example prompts, session workflow
 - [[Example Reference Note]] — shows the pattern for creating reference notes
