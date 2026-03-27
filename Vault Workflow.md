@@ -104,6 +104,14 @@ If you're running a Claude Code session on the VM, don't edit in Obsidian until 
 - **Let Claude help you organise** — ask Claude to move content into dedicated notes when topics grow.
 - **Check your phone** — after a Claude Code session, your updated notes appear on all devices within seconds.
 
+## Recommended Apps
+
+| App | What it does | Platform |
+|-----|-------------|----------|
+| **Wispr Flow** | Voice-to-text dictation — speak instead of typing. Works everywhere including Obsidian and Termius. Great for capturing thoughts quickly or dictating longer notes. | Windows, Mac |
+| **Obsidian Web Clipper** | Browser extension that saves web pages and articles directly into your vault as Markdown notes. Useful for research and saving references. | Chrome, Firefox, Safari, Edge |
+| **Hackers Keyboard** | Full keyboard with Ctrl, Tab, Esc, and arrow keys — essential for using Termius and Claude Code on a tablet or phone. The default keyboard lacks these keys. | Android |
+
 ## See Also
 
 - [[Getting Started]] — vault structure, wikilinks, tags

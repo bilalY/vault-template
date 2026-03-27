@@ -68,14 +68,28 @@ Claude always follows these rules (from the CLAUDE.md file):
 2. **Session log** — at the end of every session, Claude updates today's daily note with what was done
 3. **Commit and push** — changes are committed to git so they sync to your other devices
 
-## After Your Session
+## Ending a Session Well
 
-When you're done chatting with Claude, exit and save your work:
+This is the most important part. Before you finish, **always tell Claude to wrap up**. Say something like:
+
+- "Update the daily note, commit and push"
+- "Log what we did, commit everything, and push"
+- "Wrap up — session log, commit, push"
+
+Claude will:
+1. Add a summary to today's daily note (what was done, links to files changed)
+2. Commit all changes to git
+3. Push to GitHub
+
+If you just close the terminal without doing this, your work is still saved locally (Syncthing will sync it), but there's no session log and no git backup. **Get into the habit of wrapping up properly.**
+
+If Claude doesn't offer to do this automatically, remind it — it should, but long sessions can sometimes lose track.
+
+### Manual Fallback
+
+If Claude has already exited, you can commit manually:
 
 ```bash
-# Exit Claude (type 'exit' or press Ctrl+C)
-
-# Save and sync your changes
 git add .
 git commit -m "Session: $(date '+%Y-%m-%d')"
 git push origin main
@@ -83,14 +97,109 @@ git push origin main
 
 Or use the shortcut alias: `vc` (vault commit — does all of the above in one command).
 
+## Saving Conversations
+
+### Why Save Conversations?
+
+Claude's context window is limited. During long sessions, Claude **compacts** the conversation — it summarises older messages to free up space. This means earlier details can be lost or simplified. If you've had a particularly useful or detailed conversation, save it before that happens.
+
+Saved conversations are also much easier to read back later than scrolling through terminal output.
+
+### How to Save
+
+Ask Claude to dump the conversation to a file:
+
+- "Save this conversation to a file in Personal/Notes/"
+- "Dump this session to a markdown file"
+- "Export our conversation about [topic] to a note"
+
+Claude will create a readable Markdown file with the key content from your conversation. This is especially useful for:
+
+- **Long research sessions** — where Claude explained something in detail
+- **Planning sessions** — where you worked through decisions together
+- **Before context gets high** — if you see 🟠 or 🔴, consider saving important parts
+- **Complex troubleshooting** — so you have a record of what was tried
+
+### Memory
+
+Claude has a memory system that persists between sessions. If you want Claude to remember something for next time (a preference, a decision, context about a project), tell it:
+
+- "Remember that I prefer [X]"
+- "Save to memory that [project] uses [technology]"
+- "Remember this decision: we chose [X] because [Y]"
+
+This is different from conversation saving — memory stores short facts and preferences, not full conversations. Both are useful.
+
 ## The CLAUDE.md File
 
 Every repository has a `CLAUDE.md` file at its root. This is Claude's instruction manual — it tells Claude:
-- How the vault is structured
+- How your vault is structured
 - What rules to follow (like session logging)
 - What conventions to use
 
-You can edit this file to customise Claude's behaviour. For example, if you want Claude to always use a specific writing style, add it to CLAUDE.md.
+You can edit this file to customise Claude's behaviour. For example, if you want Claude to always write in a certain style, add it to CLAUDE.md.
+
+## How Claude Code Works
+
+### The Conversation
+
+When you type a message, Claude reads it, thinks about it, and responds. It can also use **tools** — reading files, writing files, running commands, searching the web — to get things done. You'll see it working in real time.
+
+### Context Window
+
+Claude has a **context window** — a limit on how much it can "remember" in a single conversation. Think of it as a desk: Claude can only have so many documents open at once. The statusline shows your context usage as a percentage with a colour-coded indicator:
+
+- 🟢 Under 50% — plenty of room
+- 🟡 50-75% — getting full
+- 🟠 75-90% — running low
+- 🔴 Over 90% — almost full
+
+When context gets high, Claude automatically **compacts** the conversation — it summarises older messages to free up space, so you can keep working without starting over. You might see a brief pause when this happens. If a session has been going for a very long time and feels sluggish, starting fresh (`exit` then `claude`) is always an option.
+
+Claude reads the CLAUDE.md file at the start of every session, so it always knows your vault's rules and structure.
+
+### CLAUDE.md — Claude's Instruction Manual
+
+The `CLAUDE.md` file at the root of your vault tells Claude:
+- How your vault is structured
+- What rules to follow (session logging, to-do lists)
+- Where things live (`~/repos/`, `~/storage/`)
+- Any preferences you have
+
+**This is how you customise Claude.** Want Claude to always write in a certain style? Add it to CLAUDE.md. Want it to follow specific rules for a project? Add them. Claude reads this file at the start of every conversation.
+
+### Agents
+
+Agents are specialised versions of Claude that focus on specific tasks. They run as sub-processes — Claude launches them when needed. For example, an agent might explore your codebase, research a topic, or review code.
+
+You don't need to manage agents directly — Claude uses them automatically when a task benefits from specialised focus.
+
+### Skills
+
+Skills are pre-written prompts you trigger with a slash command. They're shortcuts for common tasks:
+
+- `/commit` — commit your changes with a good message
+- `/review` — review code changes
+
+Type `/` in Claude to see available skills. Your vault can define custom skills in `.claude/skills/`.
+
+### MCP Servers
+
+MCP (Model Context Protocol) servers give Claude access to external tools and services — things like GitHub, web browsing, and databases. They extend what Claude can do beyond just reading and writing local files.
+
+Your setup includes MCP servers for GitHub and web access. More can be added over time.
+
+### Models
+
+Claude comes in different models:
+
+| Model | Icon | Best for |
+|-------|------|----------|
+| **Opus** | 💎 | Complex reasoning, large tasks, deep analysis |
+| **Sonnet** | 🎵 | Balanced — good for most tasks |
+| **Haiku** | 🍃 | Fast, lightweight tasks |
+
+The statusline shows which model you're using. You can switch with `/model`.
 
 ## Tips
 
