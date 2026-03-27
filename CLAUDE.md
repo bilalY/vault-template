@@ -65,6 +65,7 @@ Checkbox states: `[ ]` todo, `[x]` done, `[/]` doing, `[>]` scheduled, `[-]` can
 1. **Always create a to-do list** when working on tasks so progress is visible in the terminal.
 2. **Session log is mandatory** — at the end of every session, add an entry to today's daily note (`_daily/YYYY-MM-DD.md`) summarising what was done. Include wikilinks to any files created or modified. If work happened, the daily note must reflect it.
 3. **Commit and push** — after making changes, always commit and push to keep the vault in sync.
+4. **"Wrap up"** — when the user says "wrap up", this means: update today's daily note with a session log, commit all changes, and push. Do all three in sequence.
 
 ## When to Create Dedicated Files
 
@@ -80,4 +81,5 @@ Most things stay in daily notes. Create a separate file when:
 - [[Vault Workflow]] — how sync works across devices, daily workflow, the one rule
 - [[Claude Code Basics]] — how to use Claude Code, example prompts, session workflow
 - [[Adding a New Device]] — onboard a new laptop, phone, or tablet
+- [[Cheat Sheet]] — terminal aliases, git commands, vault conventions quick reference
 - [[Example Reference Note]] — shows the pattern for creating reference notes
