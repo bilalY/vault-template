@@ -116,3 +116,4 @@ If you're running a Claude Code session on the VM, don't edit in Obsidian until 
 
 - [[Getting Started]] — vault structure, wikilinks, tags
 - [[Claude Code Basics]] — how to use Claude Code
+- [[Adding a New Device]] — onboard a new laptop, phone, or tablet
